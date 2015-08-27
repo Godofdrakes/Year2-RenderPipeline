@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\urias.rooney\Documents\Source Control\Year2-RenderPipeline\Downloads\glfw-3.1.1\CMakeFiles\99bdd470ce3f379054e1a2911fca0f90\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2969C696-C70B-4E0F-9BCD-B1A98FF28FD3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

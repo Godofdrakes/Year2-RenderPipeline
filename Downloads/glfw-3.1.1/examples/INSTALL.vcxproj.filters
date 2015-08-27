@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\urias.rooney\Documents\Source Control\Year2-RenderPipeline\Downloads\glfw-3.1.1\CMakeFiles\c52739a82c49f615047b579d17df80f6\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2969C696-C70B-4E0F-9BCD-B1A98FF28FD3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
