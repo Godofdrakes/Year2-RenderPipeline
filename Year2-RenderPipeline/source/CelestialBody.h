@@ -20,22 +20,40 @@ class CelestialBody {
 
     mat4 position_mat4_;
 
-    mat4 local_rotation_mat4_;
+    mat4 rotation_local_mat4_;
 
-    mat4 global_rotation_mat4_;
+    mat4 rotation_global_mat4_;
 
     mat4 transform_mat4_;
+
 public:
-    CelestialBody( int set_quality_i = 5,
-                   vec4 set_color_vec4 = vec4( 1 ),
-                   float set_scale_f = 1.f,
-                   vec3 set_offset_vec3 = vec3(0) );
+    CelestialBody* parent;
+
+    CelestialBody();
+    CelestialBody( int set_quality_i );
     ~CelestialBody();
 
     void Update();
     void Draw() const;
 
+    void SetColor( vec4 set_color_vec4 );
+    void SetColor( float r, float g, float b, float a );
+
+    void SetScale( vec3 set_scale_vec3 );
+    void SetScale( float x, float y, float z );
+
     void SetPosition( vec3 set_pos_vec3 );
+    void SetPosition( float x, float y, float z );
+
+    void SetGlobalRotation( float deg_f, vec3 set_rot_vec3 );
+    void SetGlobalRotation( float deg_f, float x, float y, float z );
+
+    void SetLocalRotation( float deg_f, vec3 set_rot_vec3 );
+    void SetLocalRotation( float deg_f, float x, float y, float z );
+
+private:
+    mat4 CalculateGlobalTransform() const;
+    mat4 CalculateLocalTransform() const;
 };
 
 #endif
