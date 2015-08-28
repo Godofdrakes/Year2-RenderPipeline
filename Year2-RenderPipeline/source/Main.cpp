@@ -18,7 +18,7 @@ const char* PROJECT_NAME = "Year2-RenderPipline";
 int main() {
     if ( glfwInit() == false ) { return -1; }
 
-    GLFWwindow* window = glfwCreateWindow( 1366, 768, PROJECT_NAME, nullptr, nullptr );
+    GLFWwindow* window = glfwCreateWindow( 1280, 720, PROJECT_NAME, nullptr, nullptr );
 
     if ( window == nullptr ) {
         glfwTerminate();
@@ -57,7 +57,16 @@ int main() {
         vec4 white( 1 );
         vec4 black( 0, 0, 0, 1 );
 
-        // for loop
+        for ( int n = 0; n < 21; ++n ) {
+            Gizmos::addLine( vec3( -10 + n, 0, 10 ),
+                             vec3( -10 + n, 0, -10 ),
+                             n == 10 ? white : black );
+            Gizmos::addLine( vec3( 10, 0, -10 + n ),
+                             vec3( -10, 0, -10 + n ),
+                             n == 10 ? white : black );
+        }
+
+        Gizmos::draw( projection * view );
 
         glfwSwapBuffers( window );
         glfwPollEvents();
