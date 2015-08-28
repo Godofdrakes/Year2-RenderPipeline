@@ -16,13 +16,17 @@ using glm::vec4;
 using glm::mat4;
 
 const char* PROJECT_NAME = "Year2-RenderPipline";
+double time_previous_d = 0.0;
+const double TIME_TICK_RATE_D = 1.0 / 60.0;
 
-const vec4 WHITE( 1 );
-const vec4 BLACK( 0, 0, 0, 1 );
-const vec4 RED( 1, 0, 0, 1 );
+const vec4 COLOR_WHITE( 1.f, 1.f, 1.f, 1.f );
+const vec4 COLOR_BLACK( 0.f, 0.f, 0.f, 1.f );
 
 int main() {
     if ( glfwInit() == false ) { return -1; }
+
+    time_previous_d = glfwGetTime();
+    double time_lag_d = 0.0;
 
     GLFWwindow* window = glfwCreateWindow( 1280, 720, PROJECT_NAME, nullptr, nullptr );
 
@@ -50,14 +54,35 @@ int main() {
 
     glClearColor( 0.25f, 0.25f, 0.25f, 1.0f );
 
-    const int NUMBER_BODIES = 1;
-    CelestialBody sun_body = CelestialBody( 15, RED, 2.f );
-    sun_body.SetPosition( vec3( 3, 3, 3 ) );
+    const int NUMBER_BODIES = 4;
+    CelestialBody celestial_body[NUMBER_BODIES] = {};
 
-    int orbit_i = 0;
+    celestial_body[0].SetPosition( 4.5f, 0.f, 0.f );
+    celestial_body[0].SetScale( 0.5f, 0.5f, 0.5f );
+    celestial_body[0].SetColor( 0.f, 0.5f, 0.f, 1.f );
+
+    celestial_body[1].SetPosition( 1.f, 0.f, 0.f );
+    celestial_body[1].SetScale( 0.1f, 0.1f, 0.1f );
+    celestial_body[1].SetColor( 0.25f, 0.25f, 0.25f, 1.f );
+    celestial_body[1].parent = &celestial_body[0];
+
+    celestial_body[2].SetPosition( 0.f, 0.f, 7.f );
+    celestial_body[2].SetScale( 1.f, 1.f, 1.f );
+    celestial_body[2].SetColor( 1.f, 0.25f, 0.f, 1.f );
+
+    celestial_body[3].SetPosition( 0.f, 0.f, 0.f );
+    celestial_body[3].SetScale( 1.5f, 1.5f, 1.5f );
+    celestial_body[3].SetColor( 1.f, 1.f, 0.f, 1.f );
+
+    float number = 0;
 
     while ( glfwWindowShouldClose( window ) == false &&
             glfwGetKey( window, GLFW_KEY_ESCAPE ) != GLFW_PRESS ) {
+
+        double time_current_d = glfwGetTime();
+        double time_elapsed_d = time_current_d - time_previous_d;
+        time_previous_d = time_current_d;
+        time_lag_d += time_elapsed_d;
 
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
@@ -66,21 +91,29 @@ int main() {
 
         Gizmos::addTransform( mat4( 1 ) );
 
-        // Draw Lines
+        // Update Objects
+        while ( time_lag_d >= TIME_TICK_RATE_D ) {
+            for ( int n = 0; n < NUMBER_BODIES; ++n ) {
+                celestial_body[n].SetGlobalRotation( number, vec3( 0.f, 1.f, 0.f ) );
+                celestial_body[n].Update();
+            }
+            number += 1.f;
+            if ( number >= 360.f ) { number = 0.f; }
+
+            time_lag_d -= TIME_TICK_RATE_D;
+        }
+
+        // Draw Objects
         for ( int n = 0; n < 21; ++n ) {
             Gizmos::addLine( vec3( -10 + n, 0, 10 ),
                              vec3( -10 + n, 0, -10 ),
-                             n == 10 ? WHITE : BLACK );
+                             n == 10 ? COLOR_WHITE : COLOR_BLACK );
             Gizmos::addLine( vec3( 10, 0, -10 + n ),
                              vec3( -10, 0, -10 + n ),
-                             n == 10 ? WHITE : BLACK );
+                             n == 10 ? COLOR_WHITE : COLOR_BLACK );
         }
 
-        // Update Objects
-        sun_body.Update();
-
-        // Draw Objects
-        sun_body.Draw();
+        for ( int n = 0; n < NUMBER_BODIES; ++n ) { celestial_body[n].Draw(); }
 
         // Render all
         Gizmos::draw( projection * view );
