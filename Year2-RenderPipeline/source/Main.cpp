@@ -53,30 +53,20 @@ int main() {
     mat4 projection = glm::perspective( glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f );
 
     glClearColor( 0.25f, 0.25f, 0.25f, 1.0f );
+    glEnable( GL_DEPTH_TEST );
 
-    const int NUMBER_BODIES = 4;
-    CelestialBody celestial_body[NUMBER_BODIES] = {};
+    const int NUMBER_BODIES = 2;
+    CelestialBody celestial_body[NUMBER_BODIES];;
 
     celestial_body[0] = CelestialBody();
-    celestial_body[0].SetPosition( 4.5f, 0.f, 0.f );
-    celestial_body[0].SetScale( 0.5f, 0.5f, 0.5f );
-    celestial_body[0].SetColor( 0.f, 0.25f, 0.5f, 1.f );
+    celestial_body[0].SetPosition( 0.f, 0.f, 0.f );
+    celestial_body[0].SetScale( 1.5f, 1.5f, 1.5f );
+    celestial_body[0].SetColor( 1.f, 1.f, 0.f, 1.f );
 
     celestial_body[1] = CelestialBody();
-    celestial_body[1].SetPosition( 1.f, 0.f, 0.f );
-    celestial_body[1].SetScale( 0.1f, 0.1f, 0.1f );
-    celestial_body[1].SetColor( 0.25f, 0.25f, 0.25f, 1.f );
-    celestial_body[1].parent = &celestial_body[0];
-
-    celestial_body[2] = CelestialBody();
-    celestial_body[2].SetPosition( 0.f, 0.f, 7.f );
-    celestial_body[2].SetScale( 1.f, 1.f, 1.f );
-    celestial_body[2].SetColor( 1.f, 0.25f, 0.f, 1.f );
-
-    celestial_body[3] = CelestialBody();
-    celestial_body[3].SetPosition( 0.f, 0.f, 0.f );
-    celestial_body[3].SetScale( 1.5f, 1.5f, 1.5f );
-    celestial_body[3].SetColor( 1.f, 1.f, 0.f, 1.f );
+    celestial_body[1].SetPosition( 5.f, 0.f, 0.f );
+    celestial_body[1].SetScale( 0.5f, 0.5f, 0.5f );
+    celestial_body[1].SetColor( 0.0f, 0.25f, 0.5f, 1.f );
 
     float number = 0;
 

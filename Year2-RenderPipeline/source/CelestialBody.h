@@ -11,26 +11,28 @@ using glm::vec3;
 using glm::vec4;
 using glm::mat4;
 
-class CelestialBody {
-    mat4 scale_mat4_;
+enum CelestialBody_Type {
+    SPHERE,
+    RING
+};
 
+class CelestialBody {
     int quality_i_;
 
     vec4 color_vec4_;
 
+    mat4 scale_mat4_;
     mat4 position_mat4_;
-
     mat4 rotation_local_mat4_;
-
     mat4 rotation_global_mat4_;
-
     mat4 transform_mat4_;
 
 public:
     CelestialBody* parent;
+    CelestialBody_Type bodyType;
 
     CelestialBody();
-    CelestialBody( int set_quality_i );
+    CelestialBody( int set_quality_i, CelestialBody_Type type );
     ~CelestialBody();
 
     void SetQuality( int set_quality_i );

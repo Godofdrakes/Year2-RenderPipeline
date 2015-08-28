@@ -1,8 +1,9 @@
 #include "CelestialBody.h"
 
-CelestialBody::CelestialBody() : CelestialBody( 15 ) {}
+CelestialBody::CelestialBody() : CelestialBody( 15, SPHERE ) {}
 
-CelestialBody::CelestialBody( int set_quality_i ) {
+CelestialBody::CelestialBody( int set_quality_i, CelestialBody_Type type ) {
+    bodyType = type;
     scale_mat4_ = mat4( 1 );
 
     quality_i_ = set_quality_i;
