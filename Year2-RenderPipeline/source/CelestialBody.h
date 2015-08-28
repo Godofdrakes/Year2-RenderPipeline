@@ -33,6 +33,8 @@ public:
     CelestialBody( int set_quality_i );
     ~CelestialBody();
 
+    void SetQuality( int set_quality_i );
+
     void Update();
     void Draw() const;
 
