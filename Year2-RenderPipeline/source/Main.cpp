@@ -60,7 +60,7 @@ int main() {
     celestial_body[0] = CelestialBody();
     celestial_body[0].SetPosition( 4.5f, 0.f, 0.f );
     celestial_body[0].SetScale( 0.5f, 0.5f, 0.5f );
-    celestial_body[0].SetColor( 0.f, 0.5f, 0.f, 1.f );
+    celestial_body[0].SetColor( 0.f, 0.25f, 0.5f, 1.f );
 
     celestial_body[1] = CelestialBody();
     celestial_body[1].SetPosition( 1.f, 0.f, 0.f );
@@ -101,6 +101,7 @@ int main() {
                 celestial_body[n].SetGlobalRotation( number, vec3( 0.f, 1.f, 0.f ) );
                 celestial_body[n].Update();
             }
+
             number += 1.f;
             if ( number >= 360.f ) { number = 0.f; }
 
@@ -116,7 +117,6 @@ int main() {
                              vec3( -10, 0, -10 + n ),
                              n == 10 ? COLOR_WHITE : COLOR_BLACK );
         }
-
         for ( int n = 0; n < NUMBER_BODIES; ++n ) { celestial_body[n].Draw(); }
 
         // Render all
