@@ -20,7 +20,7 @@ CelestialBody::CelestialBody( int set_quality_i ) {
 CelestialBody::~CelestialBody() {}
 
 void CelestialBody::SetQuality( int set_quality_i ) {
-    quality_i_ = set_quality;
+    quality_i_ = set_quality_i;
 }
 
 void CelestialBody::Update() {
