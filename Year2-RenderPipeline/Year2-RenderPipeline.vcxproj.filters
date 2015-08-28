@@ -24,6 +24,9 @@
     <ClCompile Include="source\Gizmos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\CelestialBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\gl_core_4_4.h">
@@ -32,5 +35,13 @@
     <ClInclude Include="source\Gizmos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\CelestialBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Notes.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
