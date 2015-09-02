@@ -2,9 +2,9 @@
 
 Application::Application() : Application( "" ) {}
 
-Application::Application(string set_name) : Application( set_name, 1280, 720 ) { }
+Application::Application( string set_name ) : Application( set_name, 1280, 720 ) {}
 
-Application::Application(string set_name, int set_width, int set_height) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
+Application::Application( string set_name, int set_width, int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
     name_string_ = set_name;
     width_i_ = set_width;
     height_i_ = set_height;
