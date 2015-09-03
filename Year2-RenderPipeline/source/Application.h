@@ -3,11 +3,13 @@
 
 #include <string>
 #include <array>
-#include "gl_core_4_4.h"
+#include <GLCore/gl_core_4_4.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include "CelestialBody.h"
+#include "Camera/Camera.h"
+#include "Camera/FlyCamera.h"
 
 using std::string;
 using std::array;
@@ -33,10 +35,13 @@ class Application {
     double time_current_d_, time_previous_d_, time_elapsed_d_, time_lag_d_;
 
     array<CelestialBody*, 2> celestial_body;
+
+    Camera* camera_;
+
 public:
     Application();
-    Application( string set_name );
-    Application( string set_name, int set_width, int set_height );
+    Application( const string set_name );
+    Application( const string set_name, const int set_width, const int set_height );
     ~Application();
 
     ApplicationFail Init();

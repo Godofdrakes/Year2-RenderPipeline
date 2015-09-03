@@ -2,16 +2,18 @@
 
 Application::Application() : Application( "" ) {}
 
-Application::Application( string set_name ) : Application( set_name, 1280, 720 ) {}
+Application::Application( const string set_name ) : Application( set_name, 1280, 720 ) {}
 
-Application::Application( string set_name, int set_width, int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
+Application::Application( const string set_name, const int set_width, const int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
     name_string_ = set_name;
     width_i_ = set_width;
     height_i_ = set_height;
     window_glfw_ = nullptr;
+    camera_ = nullptr;
 
     view_mat4_ = glm::lookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
     projection_mat4_ = glm::perspective( glm::pi<float>() * 0.25f, 16 / 9.f, 0.1f, 1000.f );
+    //projection_mat4_ = glm::ortho( 16 / -2.f, 16 / 2.f, 9 / -2.f, 9 / 2.f, 0.1f, 1000.f );
 
     time_current_d_ = 0.0;
     time_elapsed_d_ = 0.0;
@@ -23,11 +25,7 @@ Application::Application( string set_name, int set_width, int set_height ) : TIC
     }
 }
 
-Application::~Application() {
-    for ( int n = 0; n < celestial_body.size(); ++n ) {
-        delete( celestial_body[n] );
-    }
-}
+Application::~Application() {}
 
 ApplicationFail Application::Init() {
     if ( glfwInit() == false ) { return ApplicationFail::GLFW_INIT; }
@@ -35,14 +33,18 @@ ApplicationFail Application::Init() {
     window_glfw_ = glfwCreateWindow( 1280, 720, name_string_.c_str(), nullptr, nullptr );
     if ( window_glfw_ == nullptr ) {
         glfwTerminate();
-        return GLFW_CREATE_WINDOW;
+        return ApplicationFail::GLFW_CREATE_WINDOW;
     }
     glfwMakeContextCurrent( window_glfw_ );
+
+    camera_ = new FlyCamera( 0.01f, window_glfw_ );
+    camera_->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
+    camera_->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
 
     if ( ogl_LoadFunctions() == ogl_LOAD_FAILED ) {
         glfwDestroyWindow( window_glfw_ );
         glfwTerminate();
-        return OGL_LOAD_FUNCTIONS;
+        return ApplicationFail::OGL_LOAD_FUNCTIONS;
     }
 
     const int OGL_MAJOR = ogl_GetMajorVersion();
@@ -68,6 +70,10 @@ ApplicationFail Application::Init() {
 }
 
 void Application::Shutdown() {
+    for ( int n = 0; n < celestial_body.size(); ++n ) {
+        delete( celestial_body[n] );
+    }
+    delete( camera_ );
     Gizmos::destroy();
     glfwDestroyWindow( window_glfw_ );
     glfwTerminate();
@@ -90,6 +96,7 @@ bool Application::Update() {
 
 void Application::Tick() {
     while ( time_lag_d_ >= TICK_PER_SEC_D_ ) {
+        camera_->Update();
         for ( int n = 0; n < celestial_body.size(); ++n ) {
             celestial_body[n]->SetGlobalRotation( time_current_d_ * ( n + 1 ) * ( n + 1 ), vec3( 0.f, 1.f, 0.f ) );
             celestial_body[n]->Update();
@@ -109,5 +116,6 @@ void Application::Draw() {
                          n == 10 ? vec4( 1, 1, 1, 1 ) : vec4( 0, 0, 0, 1 ) );
     }
     for ( int n = 0; n < celestial_body.size(); ++n ) { celestial_body[n]->Draw(); }
-    Gizmos::draw( projection_mat4_ * view_mat4_ );
+    camera_->UpdateProjectionViewTransform();
+    Gizmos::draw( camera_->Camera_View_Transform_Mat4 );
 }

@@ -1,6 +1,0 @@
-Planet
-    color
-    scale
-    rotation around center
-    offset
-    rotation around offset

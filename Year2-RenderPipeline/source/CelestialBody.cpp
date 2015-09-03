@@ -2,7 +2,7 @@
 
 CelestialBody::CelestialBody() : CelestialBody( 15, SPHERE ) {}
 
-CelestialBody::CelestialBody( int set_quality_i, CelestialBody_Type type ) {
+CelestialBody::CelestialBody( const int set_quality_i, const CelestialBody_Type type ) {
     bodyType = type;
     scale_mat4_ = mat4( 1 );
 
@@ -20,7 +20,7 @@ CelestialBody::CelestialBody( int set_quality_i, CelestialBody_Type type ) {
 
 CelestialBody::~CelestialBody() {}
 
-void CelestialBody::SetQuality( int set_quality_i ) {
+void CelestialBody::SetQuality( const int set_quality_i ) {
     quality_i_ = set_quality_i;
 }
 
@@ -37,43 +37,43 @@ void CelestialBody::Draw() const {
                        &transform_mat4_ );
 }
 
-void CelestialBody::SetColor( vec4 set_color_vec4 ) {
+void CelestialBody::SetColor( const vec4 set_color_vec4 ) {
     color_vec4_ = set_color_vec4;
 }
 
-void CelestialBody::SetColor( float r, float g, float b, float a ) {
+void CelestialBody::SetColor( const float r, const float g, const float b, const float a ) {
     color_vec4_ = vec4( r, g, b, a );
 }
 
-void CelestialBody::SetScale( vec3 set_scale_vec3 ) {
+void CelestialBody::SetScale( const vec3 set_scale_vec3 ) {
     scale_mat4_ = glm::scale( set_scale_vec3 );
 }
 
-void CelestialBody::SetScale( float x, float y, float z ) {
+void CelestialBody::SetScale( const float x, const float y, const float z ) {
     scale_mat4_ = glm::scale( vec3( x, y, z ) );
 }
 
-void CelestialBody::SetPosition( vec3 set_pos_vec3 ) {
+void CelestialBody::SetPosition( const vec3 set_pos_vec3 ) {
     position_mat4_ = glm::translate( set_pos_vec3 );
 }
 
-void CelestialBody::SetPosition( float x, float y, float z ) {
+void CelestialBody::SetPosition( const float x, const float y, const float z ) {
     position_mat4_ = glm::translate( vec3( x, y, z ) );
 }
 
-void CelestialBody::SetGlobalRotation( float deg_f, vec3 set_rot_vec3 ) {
+void CelestialBody::SetGlobalRotation( const float deg_f, const vec3 set_rot_vec3 ) {
     rotation_global_mat4_ = glm::rotate( glm::radians( deg_f ), set_rot_vec3 );
 }
 
-void CelestialBody::SetGlobalRotation( float deg_f, float x, float y, float z ) {
+void CelestialBody::SetGlobalRotation( const float deg_f, const float x, const float y, const float z ) {
     rotation_global_mat4_ = glm::rotate( glm::radians( deg_f ), vec3( x, y, z ) );
 }
 
-void CelestialBody::SetLocalRotation( float deg_f, vec3 set_rot_vec3 ) {
+void CelestialBody::SetLocalRotation( const float deg_f, const vec3 set_rot_vec3 ) {
     rotation_local_mat4_ = glm::rotate( glm::radians( deg_f ), set_rot_vec3 );
 }
 
-void CelestialBody::SetLocalRotation( float deg_f, float x, float y, float z ) {
+void CelestialBody::SetLocalRotation( const float deg_f, const float x, const float y, const float z ) {
     rotation_local_mat4_ = glm::rotate( glm::radians( deg_f ), vec3( x, y, z ) );
 }
 

@@ -2,10 +2,10 @@
 #ifndef _CELESTIALBODY_H_
 #define _CELESTIALBODY_H_
 
-#include "Gizmos.h"
+#include <Gizmos/Gizmos.h>
 
-#include "glm/glm.hpp"
-#include "glm/ext.hpp"
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 using glm::vec3;
 using glm::vec4;
@@ -32,28 +32,28 @@ public:
     CelestialBody_Type bodyType;
 
     CelestialBody();
-    CelestialBody( int set_quality_i, CelestialBody_Type type );
+    CelestialBody( const int set_quality_i, const CelestialBody_Type type );
     ~CelestialBody();
 
-    void SetQuality( int set_quality_i );
+    void SetQuality( const int set_quality_i );
 
     void Update();
     void Draw() const;
 
-    void SetColor( vec4 set_color_vec4 );
-    void SetColor( float r, float g, float b, float a );
+    void SetColor( const vec4 set_color_vec4 );
+    void SetColor( const float r, const float g, const float b, const float a );
 
-    void SetScale( vec3 set_scale_vec3 );
-    void SetScale( float x, float y, float z );
+    void SetScale( const vec3 set_scale_vec3 );
+    void SetScale( const float x, const float y, const float z );
 
-    void SetPosition( vec3 set_pos_vec3 );
-    void SetPosition( float x, float y, float z );
+    void SetPosition( const vec3 set_pos_vec3 );
+    void SetPosition( const float x, const float y, const float z );
 
-    void SetGlobalRotation( float deg_f, vec3 set_rot_vec3 );
-    void SetGlobalRotation( float deg_f, float x, float y, float z );
+    void SetGlobalRotation( const float deg_f, const vec3 set_rot_vec3 );
+    void SetGlobalRotation( const float deg_f, const float x, const float y, const float z );
 
-    void SetLocalRotation( float deg_f, vec3 set_rot_vec3 );
-    void SetLocalRotation( float deg_f, float x, float y, float z );
+    void SetLocalRotation( const float deg_f, const vec3 set_rot_vec3 );
+    void SetLocalRotation( const float deg_f, const float x, const float y, const float z );
 
 private:
     mat4 CalculateGlobalTransform() const;

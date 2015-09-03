@@ -70,16 +70,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SolutionDir)depend\source\;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SolutionDir)depend\source\;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <SourcePath>$(SolutionDir)depend\source\;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <SourcePath>$(SolutionDir)depend\source\;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)depend\source\;$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLM_FORCE_PURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -93,7 +101,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)depend\source\;$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLM_FORCE_PURE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -107,7 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)depend\source\;$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLM_FORCE_PURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -125,7 +133,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)depend\source\;$(SolutionDir)depend\$(Configuration)\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLM_FORCE_PURE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -135,20 +143,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\depend\source\Gizmos\Gizmos.cpp" />
+    <ClCompile Include="..\depend\source\GLCore\gl_core_4_4.c" />
+    <ClCompile Include="source\Input\Input.cpp" />
+    <ClCompile Include="source\Camera\FlyCamera.cpp" />
+    <ClCompile Include="source\Camera\Camera.cpp" />
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\CelestialBody.cpp" />
-    <ClCompile Include="source\Gizmos.cpp" />
-    <ClCompile Include="source\gl_core_4_4.c" />
     <ClCompile Include="source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\depend\source\Gizmos\Gizmos.h" />
+    <ClInclude Include="..\depend\source\GLCore\gl_core_4_4.h" />
+    <ClInclude Include="source\Input\Input.h" />
+    <ClInclude Include="source\Camera\FlyCamera.h" />
+    <ClInclude Include="source\Camera\Camera.h" />
     <ClInclude Include="source\Application.h" />
     <ClInclude Include="source\CelestialBody.h" />
-    <ClInclude Include="source\Gizmos.h" />
-    <ClInclude Include="source\gl_core_4_4.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

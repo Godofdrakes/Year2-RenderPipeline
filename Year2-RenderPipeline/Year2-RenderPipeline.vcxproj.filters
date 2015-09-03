@@ -13,15 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Depend">
+      <UniqueIdentifier>{1d11e5d4-ce64-47c9-ac9a-1e2aabc7ac1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Depend\Gizmos">
+      <UniqueIdentifier>{1a727a60-0116-46a0-8f1a-17b00f01440c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Depend\GLCore">
+      <UniqueIdentifier>{cb295c45-2367-4f6a-b71f-910b87390001}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\gl_core_4_4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Gizmos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\CelestialBody.cpp">
@@ -30,24 +33,43 @@
     <ClCompile Include="source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Camera\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Camera\FlyCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\depend\source\Gizmos\Gizmos.cpp">
+      <Filter>Depend\Gizmos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\depend\source\GLCore\gl_core_4_4.c">
+      <Filter>Depend\GLCore</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Input\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\gl_core_4_4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Gizmos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\CelestialBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Notes.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="source\Camera\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Camera\FlyCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\depend\source\Gizmos\Gizmos.h">
+      <Filter>Depend\Gizmos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\depend\source\GLCore\gl_core_4_4.h">
+      <Filter>Depend\GLCore</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Input\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
