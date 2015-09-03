@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Input/Input.h"
 
 Application::Application() : Application( "" ) {}
 
@@ -37,7 +38,9 @@ ApplicationFail Application::Init() {
     }
     glfwMakeContextCurrent( window_glfw_ );
 
-    camera_ = new FlyCamera( 0.01f, window_glfw_ );
+    Input::window_ = window_glfw_;
+
+    camera_ = new FlyCamera( 0.1f );
     camera_->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
     camera_->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
 
@@ -97,6 +100,7 @@ bool Application::Update() {
 void Application::Tick() {
     while ( time_lag_d_ >= TICK_PER_SEC_D_ ) {
         camera_->Update();
+
         for ( int n = 0; n < celestial_body.size(); ++n ) {
             celestial_body[n]->SetGlobalRotation( time_current_d_ * ( n + 1 ) * ( n + 1 ), vec3( 0.f, 1.f, 0.f ) );
             celestial_body[n]->Update();
