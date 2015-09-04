@@ -145,20 +145,20 @@
   <ItemGroup>
     <ClCompile Include="..\depend\source\Gizmos\Gizmos.cpp" />
     <ClCompile Include="..\depend\source\GLCore\gl_core_4_4.c" />
-    <ClCompile Include="source\Input\Input.cpp" />
-    <ClCompile Include="source\Camera\FlyCamera.cpp" />
-    <ClCompile Include="source\Camera\Camera.cpp" />
-    <ClCompile Include="source\Application.cpp" />
+    <ClCompile Include="source\Application\Application.cpp" />
+    <ClCompile Include="source\Application\Camera\Camera.cpp" />
+    <ClCompile Include="source\Application\Camera\FlyCamera.cpp" />
+    <ClCompile Include="source\Application\Input\Input.cpp" />
     <ClCompile Include="source\CelestialBody.cpp" />
     <ClCompile Include="source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\depend\source\Gizmos\Gizmos.h" />
     <ClInclude Include="..\depend\source\GLCore\gl_core_4_4.h" />
-    <ClInclude Include="source\Input\Input.h" />
-    <ClInclude Include="source\Camera\FlyCamera.h" />
-    <ClInclude Include="source\Camera\Camera.h" />
-    <ClInclude Include="source\Application.h" />
+    <ClInclude Include="source\Application\Application.h" />
+    <ClInclude Include="source\Application\Camera\Camera.h" />
+    <ClInclude Include="source\Application\Camera\FlyCamera.h" />
+    <ClInclude Include="source\Application\Input\Input.h" />
     <ClInclude Include="source\CelestialBody.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
